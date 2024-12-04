@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="/static/home.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="center-text">rDIS</div>
+            <div class="logo"> 
+                <img src="/static/images/logo.png" alt="rDIS Logo"> <!-- Ensure the image path is correct -->
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('patientlogin')}}">RCH</a>
+                <a href="{{ url_for('adminloginpage')}}">ADMIN</a>
+                <a href="{{ url_for('diseaseloginpage')}}">DISEASE</a>
+            </div>
+        </nav>
+        <hr class="styled-hr">
+        <div class="main">
+            
+            <h1></h1>
+        </div>
+        <hr class="styled-hr">
+    </header>
+</body>
+</html>

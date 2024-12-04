@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa; /* Light cyan background */
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px; /* Limit the width of the form */
+    margin: 0 auto; /* Center the container */
+    background-color: #ffffff; /* White background for the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    padding: 20px; /* Padding inside the container */
+}
+
+h2 {
+    text-align: center;
+    color: #00796b; /* Teal color */
+    margin-bottom: 20px;
+}
+
+label {
+    display: block; /* Make labels block elements */
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Make labels bold */
+    color: #00796b; /* Teal color for labels */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="email"],
+select {
+    width: 100%; /* Full width inputs */
+    padding: 10px; /* Padding inside the inputs */
+    margin-bottom: 15px; /* Space below inputs */
+    border: 1px solid #4db6ac; /* Greenish-blue border */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+input[type="submit"] {
+    background-color: #00796b; /* Teal background */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 10px; /* Padding for the button */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 100%; /* Full width */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+input[type="submit"]:hover {
+    background-color: #004d40; /* Darker teal on hover */
+}
+
+button {
+    padding: 10px; /* Padding for the button */
+    background-color: #00796b; /* Teal button background */
+    color: white; /* White text on button */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 100%; /* Full width */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #004d40; /* Darker teal on hover */
+}
+
+.hidden {
+    display: none; /* Hide elements with this class */
+}
+
+#pendingMessage {
+    text-align: center; /* Center the pending message */
+    color: #ff9800; /* Orange color for pending message */
+    margin-top: 10px; /* Space above the message */
+}

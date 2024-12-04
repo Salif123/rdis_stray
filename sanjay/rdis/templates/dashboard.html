@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Welcome, {{ patient.full_name.upper() }}</h2>
+        
+        <!-- Patient Information -->
+        <div class="patient-info card">
+            <h3>Your Information</h3>
+            <p><strong>Full Name:</strong> {{ patient.full_name }}</p>
+            <p><strong>Date of Birth:</strong> {{ patient.date_of_birth }}</p>
+            <p><strong>Contact Number:</strong> {{ patient.contact_number }}</p>
+            <p><strong>Address:</strong> {{ patient.address }}</p>
+            <p><strong>Email:</strong> {{ patient.email }}</p>
+            <p><strong>Status:</strong> {{ patient.patient_status }}</p>
+        </div>
+
+        <!-- Appointment Status -->
+        <div class="appointment-status card">
+            <h3>Appointment Status</h3>
+            {% if appointment %}
+                <p><strong>Appointment Status:</strong> {{ appointment.appointment_status }}</p>
+                <p><strong>Requested Date & Time:</strong> {{ appointment.requested_date }}</p>
+                <p><strong>Appointment Time Slot:</strong> {{ appointment.appointment_time}}</p>
+                <p><strong>Appointment Date:</strong> {{ appointment.appointment_date}}</p>
+            {% else %}
+                <p>No scheduled appointments. You can schedule one below.</p>
+            {% endif %}
+        </div>
+
+        <!-- Schedule Appointment Button -->
+        
+        <div class="logout">
+            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+        </div>
+    </div>
+
+        
+
+    <script>
+        document.getElementById('scheduleButton').onclick = function() {
+            const patientId = "{{ patient.id }}";  // Capture the patient ID as a string
+    
+            fetch('/request_appointment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ patient_id: patientId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    document.getElementById('pendingMessage').classList.remove('hidden');
+                    document.getElementById('scheduleButton').disabled = true;
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while requesting the appointment');
+            });
+        };
+    </script>
+</body>
+</html>

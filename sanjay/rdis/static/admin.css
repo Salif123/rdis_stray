@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa; /* Light cyan background */
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #00796b; /* Teal color */
+    margin-bottom: 20px;
+}
+
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    background-color: #ffffff; /* White background for the table */
+    border-radius: 8px; /* Rounded corners */
+}
+
+table, th, td {
+    border: 1px solid #4db6ac; /* Greenish-blue border */
+}
+
+th, td {
+    padding: 12px; /* Increased padding for better spacing */
+    text-align: center;
+}
+
+th {
+    background-color: #009688; /* Teal header background */
+    color: white; /* White text for headers */
+}
+
+td {
+    background-color: #e0f2f1; /* Light greenish-blue for table cells */
+}
+
+td[contenteditable="true"]:hover {
+    background-color: #b2dfdb; /* Slightly darker on hover */
+}
+
+button {
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: #00796b; /* Teal button background */
+    color: white; /* White text on button */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners for the button */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #004d40; /* Darker teal on hover */
+}
+
+button:focus {
+    outline: none; /* Remove outline on focus */
+}

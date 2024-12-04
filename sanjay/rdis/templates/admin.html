@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/admin.css">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <table id="adminTable">
+        <thead>
+            <tr>
+                <th>Patient ID</th>
+                <th>Full Name</th>
+                <th>Date of Birth</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Registration Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            {% for patient in data %}
+            <tr id="row-{{ patient.patient_id }}">
+                <td>{{ patient.patient_id }}</td>
+                <td contenteditable="true">{{ patient.full_name }}</td>
+                <td contenteditable="true">{{ patient.date_of_birth }}</td>
+                <td contenteditable="true">{{ patient.contact_number }}</td>
+                <td contenteditable="true">{{ patient.address }}</td>
+                <td contenteditable="true">{{ patient.email }}</td>
+                <td contenteditable="true">{{ patient.patient_status }}</td>
+                <td>{{ patient.registration_date }}</td>
+                <td>
+<button onclick="saveRow({{ patient.patient_id }})">Save</button>                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <style>
+        .button {
+          display: inline-block;       /* Makes the button behave like an inline element */
+          padding: 10px 20px;          /* Adjust padding for size */
+          font-size: 16px;             /* Font size */
+          color: #fff;                 /* Text color */
+          background-color: #007bff;   /* Button background color */
+          border: none;                /* Remove default border */
+          border-radius: 5px;          /* Rounded corners */
+          text-decoration: none;       /* Remove underline */
+          text-align: center;          /* Center text */
+          cursor: pointer;             /* Pointer cursor on hover */
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow */
+          transition: background-color 0.3s ease;   /* Smooth hover effect */
+        }
+      
+        .button:hover {
+          background-color: #0056b3;   /* Darker blue on hover */
+        }
+      
+        .button-container {
+          display: flex;
+          justify-content: center;      /* Centers the button horizontally */
+          align-items: center;          /* Aligns items vertically in the container */
+          height: 100vh;                /* Optional: Full screen height */
+        }
+      </style>
+      
+    <div class="button-container">
+        <a href="{{ url_for('view_disease_reports') }}" class="button">View Disease Reports</a>
+      </div>
+      
+    <script>
+        function saveRow(patient_id) {
+            const row = document.getElementById(`row-${patient_id}`);
+            const cells = row.querySelectorAll("[contenteditable='true']");
+            const data = {
+                patient_id: patient_id,
+                full_name: cells[0].innerText,
+                date_of_birth: cells[1].innerText,
+                contact_number: cells[2].innerText,
+                address: cells[3].innerText,
+                email: cells[4].innerText,
+                patient_status: cells[5].innerText
+            };
+
+            fetch(`/update_patient`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(response => response.json()).then(result => {
+                if (!result.success) {
+                    alert("Failed to save changes.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

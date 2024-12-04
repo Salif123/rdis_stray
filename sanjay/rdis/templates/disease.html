@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .disease-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .disease-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Disease Reporting Form - Kerala</h1>
+    <form id="diseaseForm">
+        <div class="form-group">
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" name="patientName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required min="0" max="120">
+        </div>
+
+        <div class="form-group">
+            <label for="district">District:</label>
+            <select id="district" name="district" required>
+                <option value="">Select District</option>
+                <option value="thiruvananthapuram">Thiruvananthapuram</option>
+                <option value="kollam">Kollam</option>
+                <option value="pathanamthitta">Pathanamthitta</option>
+                <option value="alappuzha">Alappuzha</option>
+                <option value="kottayam">Kottayam</option>
+                <option value="idukki">Idukki</option>
+                <option value="ernakulam">Ernakulam</option>
+                <option value="thrissur">Thrissur</option>
+                <option value="palakkad">Palakkad</option>
+                <option value="malappuram">Malappuram</option>
+                <option value="kozhikode">Kozhikode</option>
+                <option value="wayanad">Wayanad</option>
+                <option value="kannur">Kannur</option>
+                <option value="kasaragod">Kasaragod</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Select Disease:</label>
+            <div class="disease-options">
+                <div class="disease-option">
+                    <input type="radio" id="dengue" name="disease" value="dengue" required>
+                    <label for="dengue">Dengue Fever</label>
+                </div>
+                <div class="disease-option">
+                    <input type="radio" id="leptospirosis" name="disease" value="leptospirosis">
+                    <label for="leptospirosis">Leptospirosis</label>
+                </div>
+                <div class="disease-option">
+                    <input type="radio" id="covid19" name="disease" value="covid19">
+                    <label for="covid19">COVID-19</label>
+                </div>
+                <div class="disease-option">
+                    <input type="radio" id="h1n1" name="disease" value="h1n1">
+                    <label for="h1n1">H1N1 (Swine Flu)</label>
+                </div>
+                <div class="disease-option">
+                    <input type="radio" id="chikungunya" name="disease" value="chikungunya">
+                    <label for="chikungunya">Chikungunya</label>
+                </div>
+                <div class="disease-option">
+                    <input type="radio" id="malaria" name="disease" value="malaria">
+                    <label for="malaria">Malaria</label>
+                </div>
+                <div class="disease-option">
+                    <input type="radio" id="typhoid" name="disease" value="typhoid">
+                    <label for="typhoid">Typhoid</label>
+                </div>
+                <div class="disease-option">
+                    <input type="radio" id="hepatitisA" name="disease" value="hepatitisA">
+                    <label for="hepatitisA">Hepatitis A</label>
+                </div>
+                <div class="disease-option">
+                    <input type="radio" id="tuberculosis" name="disease" value="tuberculosis">
+                    <label for="tuberculosis">Tuberculosis</label>
+                </div>
+                <div class="disease-option">
+                    <input type="radio" id="nipah" name="disease" value="nipah">
+                    <label for="nipah">Nipah Virus</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="symptoms">Symptoms:</label>
+            <textarea id="symptoms" name="symptoms" rows="4" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="onsetDate">Date of Onset:</label>
+            <input type="date" id="onsetDate" name="onsetDate" required>
+        </div>
+
+        <button type="submit">Submit Report</button>
+    </form>
+    <script>
+        document.getElementById('diseaseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch('/submit_report', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Report submitted successfully!');
+                    this.reset();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Error submitting form: ' + error);
+            });
+        });
+        </script>
+</body>
+</html>

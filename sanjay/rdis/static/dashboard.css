@@ -1,0 +1,78 @@
+body {
+    background-image: url('/static/images/note.jpg');
+    background-size: cover; /* Make the background cover the entire screen */
+    background-position: center; /* Center the background image */
+    display: flex; /* Use flexbox to center vertically and horizontally */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Make the body full height */
+    margin: 0; /* Remove default body margin */
+}
+
+.container {
+    max-width: 600px; /* Set max width */
+    width: 100%; /* Allow the container to take up full width */
+    padding: 20px;
+    background:#21C4D7; /* Optional: Add a slight background color for readability */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+}
+
+.card {
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.patient-info h3, .appointment-status h3 {
+    margin-top: 0;
+}
+
+.schedule-appointment {
+    text-align: center;
+}
+
+.logout {
+    text-align: center; /* Center the logout div */
+    margin: 20px 0; /* Add spacing above and below the logout div */
+}
+
+.logout-btn {
+    color: red; /* Set text color to red */
+    text-decoration: none; /* Remove underline from the link */
+    font-size: 16px; /* Set font size */
+    padding: 10px 20px; /* Add padding for a button-like appearance */
+    border: 2px solid red; /* Add a border to the button */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+.logout-btn:hover {
+    background-color: lightcoral; /* Change background color on hover */
+    color: white; /* Change text color on hover */
+}
+
+#scheduleButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#scheduleButton:disabled {
+    background-color: #aaa;
+}
+
+.hidden {
+    display: none;
+}
+
+p {
+    margin: 5px 0;
+}
